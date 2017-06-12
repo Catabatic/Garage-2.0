@@ -12,6 +12,6 @@ namespace Garage20.DataAccess
         {
 
         }
-        public DbSet<Models.ParkedVehicle> Vehicle { get; set; }
+        public DbSet<Models.ParkedVehicle> ParkedVehicles { get; set; }
     }
 }
