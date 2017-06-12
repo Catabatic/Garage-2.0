@@ -68,7 +68,9 @@
             @Html.DisplayFor(modelItem => item.CheckOutTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AmountFee)
+            @*AmountFee is now calculated and no longer defined by the user (Linus)*@
+            @{var Fee = Math.Abs(((item.CheckInTime - item.CheckOutTime).Value.TotalMinutes)*5)/10;}
+            @Html.DisplayFor(modelItem => Fee)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
