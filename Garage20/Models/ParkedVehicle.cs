@@ -1,4 +1,4 @@
-﻿using Garage20.Enum;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,16 @@ namespace Garage20.Models
         public string Model { get; set; }
         public int WheelsAmount { get; set; }
         public VehicleType VehicleType { get; set; }
+        public DateTime? CheckInTime { get; set; }
+        public DateTime? CheckOutTime { get; set; }
+        public int AmountFee { get; set; }
+    }
+    public enum VehicleType
+    {
+        Car,
+        Motorcycle,
+        Boat,
+        Airplane,
     }
 
-    
 }
