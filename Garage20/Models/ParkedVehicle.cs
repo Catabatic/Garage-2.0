@@ -19,6 +19,9 @@ namespace Garage20.Models
         public DateTime? CheckInTime { get; set; }
         public DateTime? CheckOutTime { get; set; }
         public int AmountFee { get; set; }
+
+        public TimeSpan? ParkingDuration => CheckOutTime - CheckInTime;
+        public int Fee => 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
     }
     public enum VehicleType
     {
