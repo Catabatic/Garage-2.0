@@ -8,7 +8,7 @@ namespace Garage20.DataAccess
 {
     public class GarageContext:DbContext //Db Context permits to use the dtatbase
     {
-        public GarageContext():base("Garage2.0") //connection for the database?
+        public GarageContext():base("Garage2.0") //Name of the database
         {
 
         }
