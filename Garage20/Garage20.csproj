@@ -216,6 +216,7 @@
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\Search.cshtml" />
+    <Content Include="Views\Shared\_CheckIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
