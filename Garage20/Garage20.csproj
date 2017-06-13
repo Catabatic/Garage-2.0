@@ -165,6 +165,10 @@
     <Compile Include="Migrations\201706121035215_Nullable Datetime.Designer.cs">
       <DependentUpon>201706121035215_Nullable Datetime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706130643112_AmountFeeChange.cs" />
+    <Compile Include="Migrations\201706130643112_AmountFeeChange.Designer.cs">
+      <DependentUpon>201706130643112_AmountFeeChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706121035215_Nullable Datetime.resx">
       <DependentUpon>201706121035215_Nullable Datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706130643112_AmountFeeChange.resx">
+      <DependentUpon>201706130643112_AmountFeeChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

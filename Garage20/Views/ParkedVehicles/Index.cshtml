@@ -70,7 +70,7 @@
         <td>
             @*AmountFee is now calculated and no longer defined by the user (Linus)*@
             @*@{item.AmountFee = (int)Math.Abs(((item.CheckInTime - item.CheckOutTime).Value.TotalMinutes) * 5) / 10;}*@
-            @Html.DisplayFor(modelItem => item.Fee)
+            @Html.DisplayFor(modelItem => item.AmountFee)
             
 
         </td>
