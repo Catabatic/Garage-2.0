@@ -29,7 +29,7 @@ namespace Garage20.Models
         public int WheelsAmount { get; set; }
         public VehicleType VehicleType { get; set; }
         public DateTime? CheckInTime { get; set; }
-        [Required]
+
         public DateTime? CheckOutTime { get; set; }
 
         /*Changed AmountFee to get the ParkedVehicle parking duration and the ticket cost. The ticket cost is right now 5 crowns per 10 minute. (Linus)*/
