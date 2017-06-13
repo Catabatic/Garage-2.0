@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201706131436569_mergetest.Designer.cs">
       <DependentUpon>201706131436569_mergetest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706131453003_merge2.cs" />
+    <Compile Include="Migrations\201706131453003_merge2.Designer.cs">
+      <DependentUpon>201706131453003_merge2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706131436569_mergetest.resx">
       <DependentUpon>201706131436569_mergetest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131453003_merge2.resx">
+      <DependentUpon>201706131453003_merge2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
