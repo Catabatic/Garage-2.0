@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,10 +11,14 @@ namespace Garage20.Models
     public class ParkedVehicle
     {
         public int Id { get; set; }
+        [RegularExpression(@"^[A-Z]+[A-Z]+[A-Z]+[0-9]+[0-9]+[0-9]*$")]
         public string RegNr { get; set; }
+        [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
         public string Color { get; set; }
+        [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
         public string Brand { get; set; }
         public string Model { get; set; }
+        
         public int WheelsAmount { get; set; }
         public VehicleType VehicleType { get; set; }
         public DateTime? CheckInTime { get; set; }

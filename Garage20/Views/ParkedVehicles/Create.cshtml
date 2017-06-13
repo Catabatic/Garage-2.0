@@ -66,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CheckInTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*Changed the default CheckInTime value to the the user's current date time (Linus)*@
+                @*Changed the default CheckInTime value to the the user's current date time. It's just temporary so it doesn't get to stale when testing (Linus)*@
                 @Html.EditorFor(model => model.CheckInTime, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("g") } })
                 @Html.ValidationMessageFor(model => model.CheckInTime, "", new { @class = "text-danger" })
             </div>
@@ -75,7 +75,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CheckOutTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CheckOutTime, new { htmlAttributes = new { @class = "form-control" } })
+                @*Same thing here as i wrote above (Linus)*@
+                @Html.EditorFor(model => model.CheckOutTime, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString("g") } })
                 @Html.ValidationMessageFor(model => model.CheckOutTime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -87,7 +88,6 @@
                 @Html.ValidationMessageFor(model => model.AmountFee, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

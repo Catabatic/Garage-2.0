@@ -52,6 +52,8 @@ namespace Garage20.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*CheckInTime is now being defined by the user's current time when the user parks a car (Linus)*/
+                parkedVehicle.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
