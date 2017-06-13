@@ -56,7 +56,7 @@ namespace Garage20.Controllers
                 parkedVehicle.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             return View(parkedVehicle);

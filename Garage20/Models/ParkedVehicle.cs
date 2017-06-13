@@ -11,11 +11,11 @@ namespace Garage20.Models
     public class ParkedVehicle
     {
         public int Id { get; set; }
-        [RegularExpression(@"^[A-Z]+[A-Z]+[A-Z]+[0-9]+[0-9]+[0-9]*$")]
+       // [RegularExpression(@"^[A-Z]+[A-Z]+[A-Z]+[0-9]+[0-9]+[0-9]*$")]
         public string RegNr { get; set; }
-        [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
+       // [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
         public string Color { get; set; }
-        [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
+       // [RegularExpression(@"^[A-Z]|[a-zA-Z''-'\s]*$")]
         public string Brand { get; set; }
         public string Model { get; set; }
         

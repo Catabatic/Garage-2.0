@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#control-label{
+    font-size: 12px;
+
+}
