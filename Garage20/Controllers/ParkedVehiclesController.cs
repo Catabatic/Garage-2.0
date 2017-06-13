@@ -65,7 +65,11 @@ namespace Garage20.Controllers
         /* AmountFee is no longer editable. It will not be calculated automatically from Views > ParkedVehicles > Index, Line: 71 (Linus)*/
         public ActionResult Create([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime,CheckOutTime")] ParkedVehicle parkedVehicle)
         {
-            if (ModelState.IsValid)
+            var vehicle = (from v in db.ParkedVehicles
+                           where v.RegNr == parkedVehicle.RegNr
+                           select v.RegNr);
+
+            if (ModelState.IsValid && !vehicle.Any())
             {
                 /*CheckInTime is now being defined by the user's current time when the user parks a car (Linus)*/
                 parkedVehicle.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
@@ -73,7 +77,7 @@ namespace Garage20.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Warning = "There is already a car with the same RegNr in the garage!";
             return View(parkedVehicle);
         }
 
