@@ -21,6 +21,21 @@ namespace Garage20.Controllers
             return View(db.ParkedVehicles.ToList());
         }
 
+        /*The search method. Allows you to search for any vehicle with a RegNr*/
+        public ActionResult Search(string Search)
+        {
+            var result = from v in db.ParkedVehicles
+                         where v.RegNr == Search
+                         select v;
+
+            if (!result.Any())
+            {
+                ViewBag.Description = "Could not find a vehicle with RegNr: " + Search;
+                return View(result?.ToList());
+            }
+            return View(result?.ToList());
+        }
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
