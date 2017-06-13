@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201706130643112_AmountFeeChange.Designer.cs">
       <DependentUpon>201706130643112_AmountFeeChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706131436569_mergetest.cs" />
+    <Compile Include="Migrations\201706131436569_mergetest.Designer.cs">
+      <DependentUpon>201706131436569_mergetest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -248,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706130643112_AmountFeeChange.resx">
       <DependentUpon>201706130643112_AmountFeeChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131436569_mergetest.resx">
+      <DependentUpon>201706131436569_mergetest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
