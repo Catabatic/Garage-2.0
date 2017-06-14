@@ -20,6 +20,15 @@
             </ul>
         }
     </div>
+    <div class="col-lg-3">
+        @using (Html.BeginForm("Verify", "ParkedVehicles", FormMethod.Get))
+        {
+            <ul class="nav navbar-nav">
+                <li><input name="Verify" placeholder="Unpark vehicle with verification" type="text" /></li>
+                <li><input type="submit" value="Submit" /></li>
+            </ul>
+        }
+    </div>
 </div>
 
 <table class="table">

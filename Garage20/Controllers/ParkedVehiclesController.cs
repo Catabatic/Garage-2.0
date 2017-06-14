@@ -35,6 +35,17 @@ namespace Garage20.Controllers
             return View(result?.ToList());
         }
 
+        public ActionResult Verify(string Verify)
+        {
+            var vehicles = db.ParkedVehicles.Where(v => v.Verification == Verify);
+            if (vehicles.Any())
+            {
+                db.ParkedVehicles.Remove(vehicles.First());
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Receipt(int? id)
         {
