@@ -16,13 +16,13 @@ namespace Garage20.Models
         [RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = "Only letters and numbers are allowed")]
         public string RegNr { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z]*$", ErrorMessage = "Only letters are allowed")]
+        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ]*$", ErrorMessage = "Only letters are allowed")]
         public string Color { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z]*$", ErrorMessage = "Only letters are allowed")]
+        [RegularExpression(@"^[a-zA-ZåäöÅÄÖ]*$", ErrorMessage = "Only letters are allowed")]
         public string Brand { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = "Only letters and numbers are allowed")]
+        [RegularExpression(@"^[a-zA-Z0-9åäöÅÄÖ]*$", ErrorMessage = "Only letters and numbers are allowed")]
         public string Model { get; set; }
 
         [Required(ErrorMessage = "The Wheels field is required. Write '0' if your vehicle does not have any wheels")]
