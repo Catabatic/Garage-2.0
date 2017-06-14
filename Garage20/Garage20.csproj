@@ -192,6 +192,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\car.png" />
+    <Content Include="Images\clock-solid.png" />
+    <Content Include="Images\icon_Parking.png" />
+    <Content Include="Images\ParkedCars.jpg" />
+    <Content Include="Images\ParkedCars2.jpg" />
+    <Content Include="Images\pay.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -229,6 +235,7 @@
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\Search.cshtml" />
     <Content Include="Views\Shared\_CheckIn.cshtml" />
+    <Content Include="Views\Shared\_CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
