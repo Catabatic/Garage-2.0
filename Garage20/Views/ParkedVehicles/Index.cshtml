@@ -20,7 +20,18 @@
             </ul>
         }
     </div>
+    <div class="col-lg-3">
+        @using (Html.BeginForm("Verify", "ParkedVehicles", FormMethod.Get))
+        {
+            <ul class="nav navbar-nav">
+                <li><input name="Verify" placeholder="Unpark vehicle with verification" type="text" /></li>
+                <li><input type="submit" value="Submit" /></li>
+            </ul>
+        }
+    </div>
 </div>
+
+<h3>@ViewBag.Description</h3>
 
 <table class="table">
     <tr>
@@ -37,13 +48,17 @@
             @Html.DisplayNameFor(model => model.Model)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WheelsAmount)
+            @Html.DisplayName("Wheels")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            @Html.DisplayName("Vehicle Type")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+            @Html.DisplayName("Parking Time")
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Verification)
         </th>
         <th></th>
     </tr>
@@ -70,6 +85,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verification)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

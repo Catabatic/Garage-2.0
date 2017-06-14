@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Garage20.DataAccess;
 using Garage20.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace Garage20.Controllers
 {
@@ -28,9 +30,19 @@ namespace Garage20.Controllers
             if (!result.Any())
             {
                 ViewBag.Description = "Could not find a vehicle with RegNr: " + Search;
-                return View(result?.ToList());
             }
-            return View(result?.ToList());
+            return View("Index", result?.ToList());
+        }
+
+        public ActionResult Verify(string Verify)
+        {
+            var vehicles = db.ParkedVehicles.Where(v => v.Verification == Verify);
+            if (vehicles.Any())
+            {
+                db.ParkedVehicles.Remove(vehicles.First());
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: ParkedVehicles/Details/5
@@ -72,9 +84,25 @@ namespace Garage20.Controllers
             {
                 /*CheckInTime is now being defined by the user's current time when the user parks a car (Linus)*/
                 parkedVehicle.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
+
+                /*Verification random number generator*/
+                var ran = new Random();
+                while (true){
+                        do
+                        {
+                            parkedVehicle.Verification += ran.Next(0, 9);
+                        } while (parkedVehicle.Verification.Length != 4);
+                    var vehicles = db.ParkedVehicles.Where(v => v.Verification == parkedVehicle.Verification);
+                    if (!vehicles.Any())
+                    {
+                        break;
+                    }
+                    parkedVehicle.Verification = "";
+                }
+
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             ViewBag.Warning = "There is already a car with the same RegNr in the garage!";
             return View(parkedVehicle);
