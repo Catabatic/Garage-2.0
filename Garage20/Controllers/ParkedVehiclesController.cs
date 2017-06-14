@@ -24,10 +24,7 @@ namespace Garage20.Controllers
         /*The search method. Allows you to search for any vehicle with a RegNr*/
         public ActionResult Search(string Search)
         {
-            var result = from v in db.ParkedVehicles
-                         where v.RegNr == Search
-                         select v;
-
+            var result = db.ParkedVehicles.Where(v => v.RegNr == Search);
             if (!result.Any())
             {
                 ViewBag.Description = "Could not find a vehicle with RegNr: " + Search;
@@ -37,7 +34,7 @@ namespace Garage20.Controllers
         }
 
         // GET: ParkedVehicles/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Receipt(int? id)
         {
             if (id == null)
             {
@@ -48,6 +45,11 @@ namespace Garage20.Controllers
             {
                 return HttpNotFound();
             }
+
+            parkedVehicle.CheckOutTime = DateTime.Now;
+            TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
+            parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
+
             return View(parkedVehicle);
         }
 
@@ -65,10 +67,7 @@ namespace Garage20.Controllers
         /* AmountFee is no longer editable. It will not be calculated automatically from Views > ParkedVehicles > Index, Line: 71 (Linus)*/
         public ActionResult Create([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime")] ParkedVehicle parkedVehicle)
         {
-            var vehicle = (from v in db.ParkedVehicles
-                           where v.RegNr == parkedVehicle.RegNr
-                           select v.RegNr);
-
+            var vehicle = db.ParkedVehicles.Where(v => v.RegNr == parkedVehicle.RegNr);
             if (ModelState.IsValid && !vehicle.Any())
             {
                 /*CheckInTime is now being defined by the user's current time when the user parks a car (Linus)*/
