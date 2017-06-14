@@ -45,6 +45,10 @@
         <th>
             @Html.DisplayNameFor(model => model.CheckInTime)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Verification)
+        </th>
         <th></th>
     </tr>
 
@@ -70,6 +74,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verification)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

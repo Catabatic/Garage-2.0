@@ -11,6 +11,7 @@ namespace Garage20.Models
     public class ParkedVehicle 
     {
         public int Id { get; set; }
+        public string Verification { get; set; }
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = "Only letters and numbers are allowed")]
         public string RegNr { get; set; }
