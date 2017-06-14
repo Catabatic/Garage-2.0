@@ -63,7 +63,7 @@ namespace Garage20.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         /* AmountFee is no longer editable. It will not be calculated automatically from Views > ParkedVehicles > Index, Line: 71 (Linus)*/
-        public ActionResult Create([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime,CheckOutTime")] ParkedVehicle parkedVehicle)
+        public ActionResult Create([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime")] ParkedVehicle parkedVehicle)
         {
             var vehicle = (from v in db.ParkedVehicles
                            where v.RegNr == parkedVehicle.RegNr
@@ -102,7 +102,7 @@ namespace Garage20.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         /* AmountFee is no longer editable. It will not be calculated automatically from Views > ParkedVehicles > Index, Line: 71 (Linus)*/
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime,CheckOutTime")] ParkedVehicle parkedVehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Color,Brand,Model,WheelsAmount,VehicleType,CheckInTime")] ParkedVehicle parkedVehicle)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +125,11 @@ namespace Garage20.Controllers
             {
                 return HttpNotFound();
             }
+
+            parkedVehicle.CheckOutTime = DateTime.Now;
+            TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
+            parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
+
             return View(parkedVehicle);
         }
 

@@ -45,12 +45,6 @@
         <th>
             @Html.DisplayNameFor(model => model.CheckInTime)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOutTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AmountFee)
-        </th>
         <th></th>
     </tr>
 
@@ -76,12 +70,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckOutTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AmountFee)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
