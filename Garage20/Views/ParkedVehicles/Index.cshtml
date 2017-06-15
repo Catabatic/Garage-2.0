@@ -5,22 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Sök fordon</h2>
+<h2>Fordon</h2>
 
 <h4>@ViewBag.Description</h4>
 
-<div class="row">
-    <div class="col-sm-12">
-        @using (Html.BeginForm("Search", "ParkedVehicles", FormMethod.Get))
-        {
-            <ul class="nav navbar-nav">
-                <li><input name="Search" placeholder="Ange registreringsnummer" type="text" /></li>
-                <li><input type="submit" value="Submit" /></li>
-            </ul>
-        }
-    </div>
-
-</div>
 <p></p>
 <table class="table">
     <tr>
@@ -28,22 +16,10 @@
             @Html.DisplayNameFor(model => model.RegNr)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayName("Fordonstyp")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WheelsAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+            @Html.DisplayName("Tid sen parkering")
         </th>
         <th></th>
     </tr>
@@ -55,27 +31,14 @@
                 @Html.DisplayFor(modelItem => item.RegNr)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WheelsAmount)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.VehicleType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CheckInTime)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Kvitto", "Receipt", new { id = item.Id }) |
+                @Html.ActionLink("Avsluta parkering", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -54,3 +54,11 @@ span.glyphicon {
 
 }
 
+.col-sm-4 .navbar-nav{
+    width:100%;
+}
+
+    .col-sm-4 .navbar-nav li #Verify{
+
+    }
+

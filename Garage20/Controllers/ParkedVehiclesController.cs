@@ -22,6 +22,10 @@ namespace Garage20.Controllers
         {
             return View(db.ParkedVehicles.ToList());
         }
+        public ActionResult SearchVehicle()
+        {
+            return View();
+        }
 
         /*The search method. Allows you to search for any vehicle with a RegNr*/
         public ActionResult Search(string Search)
@@ -34,16 +38,16 @@ namespace Garage20.Controllers
             return View("Index",result?.ToList());
         }
 
-        public ActionResult Verify(string Verify)
-        {
-            var vehicles = db.ParkedVehicles.Where(v => v.Verification == Verify);
-            if (vehicles.Any())
-            {
-                db.ParkedVehicles.Remove(vehicles.First());
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
+        //public ActionResult Verify(string Verify)
+        //{
+        //    var vehicles = db.ParkedVehicles.Where(v => v.Verification == Verify);
+        //    if (vehicles.Any())
+        //    {
+        //        db.ParkedVehicles.Remove(vehicles.First());
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
 
         // GET: ParkedVehicles/Details/5
         public ActionResult Receipt(int? id)
@@ -58,7 +62,7 @@ namespace Garage20.Controllers
                 return HttpNotFound();
             }
 
-            parkedVehicle.CheckOutTime = DateTime.Now;
+            parkedVehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
             TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
             parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
 
@@ -86,19 +90,19 @@ namespace Garage20.Controllers
                 parkedVehicle.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
 
                 /*Verification random number generator*/
-                var ran = new Random();
-                while (true){
-                        do
-                        {
-                            parkedVehicle.Verification += ran.Next(0, 9);
-                        } while (parkedVehicle.Verification.Length != 4);
-                    var vehicles = db.ParkedVehicles.Where(v => v.Verification == parkedVehicle.Verification);
-                    if (!vehicles.Any())
-                    {
-                        break;
-                    }
-                    parkedVehicle.Verification = "";
-                }
+                //var ran = new Random();
+                //while (true){
+                //        do
+                //        {
+                //            parkedVehicle.Verification += ran.Next(0, 9);
+                //        } while (parkedVehicle.Verification.Length != 4);
+                //    var vehicles = db.ParkedVehicles.Where(v => v.Verification == parkedVehicle.Verification);
+                //    if (!vehicles.Any())
+                //    {
+                //        break;
+                //    }
+                //    parkedVehicle.Verification = "";
+                //}
 
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
@@ -153,7 +157,7 @@ namespace Garage20.Controllers
                 return HttpNotFound();
             }
 
-            parkedVehicle.CheckOutTime = DateTime.Now;
+            parkedVehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
             TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
             parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
 

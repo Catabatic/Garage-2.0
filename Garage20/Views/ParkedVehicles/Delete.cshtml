@@ -4,11 +4,9 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Avsluta parkering</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>ParkedVehicle</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayName("färg")
         </dt>
 
         <dd>
@@ -28,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Brand)
+            @Html.DisplayName("Märke")
         </dt>
 
         <dd>
@@ -44,7 +42,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WheelsAmount)
+            @Html.DisplayName("Antal hjul")
         </dt>
 
         <dd>
@@ -52,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            @Html.DisplayName("Fordonstyp")
         </dt>
 
         <dd>
@@ -60,7 +58,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+            @Html.DisplayName("Tid sen parkering")
         </dt>
 
         <dd>
@@ -68,7 +66,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CheckOutTime)
+            @Html.DisplayName("Tid nu")
         </dt>
 
         <dd>
@@ -76,11 +74,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AmountFee)
+            @Html.DisplayName("Kostnad")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AmountFee)
+            @Html.DisplayName("Kr")
         </dd>
 
     </dl>
@@ -89,8 +88,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Avsluta" class="btn btn-default" /> |
+            @Html.ActionLink("Tillbaka", "Index")
         </div>
     }
 </div>

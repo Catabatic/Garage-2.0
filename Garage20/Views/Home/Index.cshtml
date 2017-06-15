@@ -1,4 +1,6 @@
-﻿@model Garage20.Models.ParkedVehicle
+﻿
+
+@model Garage20.Models.ParkedVehicle
 @{
     ViewBag.Title = "Home Page";
 }
@@ -27,7 +29,7 @@
             <span class="glyphicon glyphicon-align-center glyphicon-search "></span>
             <h2>Sök fordon</h2>
             <p>Sök på parkerade fordon</p>
-            <p><a class="btn btn-default" href="@Url.Action("Index", "ParkedVehicles")"> Sök &raquo;</a></p>
+            <p><a class="btn btn-default" href="@Url.Action("SearchVehicle", "ParkedVehicles")"> Sök &raquo;</a></p>
         </div>
     </div>
     <hr />
