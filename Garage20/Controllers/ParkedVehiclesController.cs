@@ -122,10 +122,10 @@ namespace Garage20.Controllers
                 //    }
                 //    parkedVehicle.Verification = "";
                 //}
-
+                ViewBag.Description = "Fordonet har parkerats i garaget!";
                 db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return View();
             }
             ViewBag.Warning = "Det finns redan ett fordon med samma RegNr!";
             return View(parkedVehicle);
