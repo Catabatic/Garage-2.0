@@ -7,17 +7,16 @@
 
 <h2>Checka ut fordon</h2>
 
-<div class="row">
-    <div class="col-sm-12">
+<div class="well">
+
         @using (Html.BeginForm("CheckOut", "ParkedVehicles", FormMethod.Get))
         {
             <p>Ange registreringsnummer för fordonet du vill checka ut</p>
-            <ul class="nav navbar-nav">
-                <li><input name="Search" class="form-control" placeholder="Ange registreringsnummer" type="text" /></li>
-                <li><input type="submit" class="btn btn-default" value="Checka ut" /></li>
-            </ul>
+            <div class="form-inline">
+                <input name="Search" class="form-control" placeholder="Registreringsnummer" type="text" />
+                <input type="submit" class="btn btn-default" value="Checka ut" />
+            </div>
         }
- 
-    </div>
+
 
 </div>
