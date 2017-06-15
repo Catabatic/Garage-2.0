@@ -33,7 +33,14 @@ namespace Garage20.Controllers
             ViewBag.Searched = "eftersomboolfunkarej";
             if (!result.Any())
             {
-                ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
+                if (Search != "")
+                {
+                    ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
+                }
+                else
+                {
+                    ViewBag.Description = "Vänligen ange ett registreringsnummer";
+                }
                 return View("Index", result?.ToList());
             }
 
@@ -46,7 +53,15 @@ namespace Garage20.Controllers
             var result = db.ParkedVehicles.Where(v => v.RegNr == Search);
             if (!result.Any())
             {
-                ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
+                if (Search != "")
+                {
+                    ViewBag.Description = "Det finns inget fordon med registreringsnummer" + Search;
+                }
+                else
+                {
+                    ViewBag.Description = "Vänligen ange ett registreringsnummer";
+                }
+                
                 return View("SearchVehicle");
             }
 

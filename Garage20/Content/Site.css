@@ -73,5 +73,14 @@ span.glyphicon {
 .info {
     padding-bottom: 15px;
     padding-top: 15px;
+    margin-top: 10px;
+
+}
+
+.infoTextWarning {
+    color: red;
+}
+.infoText {
+    color: green;
 
 }
