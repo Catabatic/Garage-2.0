@@ -5,11 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Fordon</h2>
+<h2>Incheckade fordon</h2>
 
 <h4>@ViewBag.Description</h4>
 
 <p></p>
+@using (Html.BeginForm("Search", "ParkedVehicles", FormMethod.Get))
+{
+    <p>Ange registreringsnummer för fordonet du vill checka ut</p>
+            <ul class="nav navbar-nav">
+                <li><input name="Search" class="form-control" placeholder="Ange registreringsnummer" type="text" /></li>
+                <li><input type="submit" class="btn btn-default" value="Checka ut" /></li>
+            </ul>
+}
 <table class="table">
     <tr>
         <th>
