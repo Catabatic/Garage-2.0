@@ -37,7 +37,7 @@ namespace Garage20.Controllers
                 return View("SearchVehicle");
             }
 
-            return Receipt(result?.First()?.Id, true);
+            return Receipt(result?.First()?.Id);
         }
 
         //public ActionResult Verify(string Verify)
@@ -52,7 +52,7 @@ namespace Garage20.Controllers
         //}
 
         // GET: ParkedVehicles/Details/5
-        public ActionResult Receipt(int? id, bool checkout)
+        public ActionResult Receipt(int? id)
         {
             if (id == null)
             {
@@ -68,11 +68,9 @@ namespace Garage20.Controllers
             TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
             parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
 
-            if (checkout)
-            {
-                db.ParkedVehicles.Remove(parkedVehicle);
-                db.SaveChanges();
-            }
+
+            db.ParkedVehicles.Remove(parkedVehicle);
+            db.SaveChanges();
 
             return View("Receipt",parkedVehicle);
         }
