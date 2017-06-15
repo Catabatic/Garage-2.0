@@ -1,12 +1,12 @@
 ﻿@model Garage20.Models.ParkedVehicle
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Receipt";
 }
 
-<h2>Avsluta parkering</h2>
-
+<h2>Detaljer</h2>
 <div>
+    <h4>Detaljvy för @Html.DisplayFor(model => model.RegNr)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -81,15 +81,8 @@
             @Html.DisplayFor(model => model.AmountFee)
             @Html.DisplayName("Kr")
         </dd>
-
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Avsluta" class="btn btn-default" /> |
-            @Html.ActionLink("Tillbaka", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Till fordonen", "Index")
+</p>

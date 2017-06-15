@@ -33,9 +33,11 @@ namespace Garage20.Controllers
             var result = db.ParkedVehicles.Where(v => v.RegNr == Search);
             if (!result.Any())
             {
-                ViewBag.Description = "Could not find a vehicle with RegNr: " + Search;
+                ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
+                return View("SearchVehicle");
             }
-            return View("Index",result?.ToList());
+
+            return Receipt(result?.First()?.Id, true);
         }
 
         //public ActionResult Verify(string Verify)
@@ -50,7 +52,7 @@ namespace Garage20.Controllers
         //}
 
         // GET: ParkedVehicles/Details/5
-        public ActionResult Receipt(int? id)
+        public ActionResult Receipt(int? id, bool checkout)
         {
             if (id == null)
             {
@@ -66,7 +68,13 @@ namespace Garage20.Controllers
             TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
             parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
 
-            return View(parkedVehicle);
+            if (checkout)
+            {
+                db.ParkedVehicles.Remove(parkedVehicle);
+                db.SaveChanges();
+            }
+
+            return View("Receipt",parkedVehicle);
         }
 
         // GET: ParkedVehicles/Create
@@ -108,7 +116,7 @@ namespace Garage20.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.Warning = "There is already a car with the same RegNr in the garage!";
+            ViewBag.Warning = "Det finns redan ett fordon med samma RegNr!";
             return View(parkedVehicle);
         }
 
@@ -145,7 +153,7 @@ namespace Garage20.Controllers
         }
 
         // GET: ParkedVehicles/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -161,7 +169,7 @@ namespace Garage20.Controllers
             TimeSpan? ParkingDuration = parkedVehicle.CheckOutTime - parkedVehicle.CheckInTime;
             parkedVehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
 
-            return View(parkedVehicle);
+            return View("Details",parkedVehicle);
         }
 
         // POST: ParkedVehicles/Delete/5

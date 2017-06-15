@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SearchVehicle</h2>
-
+<h2>Sök fordon med RegNr</h2>
+<h3>@ViewBag.Description</h3>
 <div class="row">
     <div class="col-sm-12">
         @using (Html.BeginForm("Search", "ParkedVehicles", FormMethod.Get))
         {
             <ul class="nav navbar-nav">
                 <li><input name="Search" placeholder="Ange registreringsnummer" type="text" /></li>
-                <li><input type="submit" value="Submit" /></li>
+                <li><input type="submit" value="Sök" /></li>
             </ul>
         }
     </div>
