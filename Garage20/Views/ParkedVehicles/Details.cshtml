@@ -4,10 +4,14 @@
     ViewBag.Title = "Receipt";
 }
 
-<h2>Detaljer</h2>
-<div>
-    <h4>Detaljvy för @Html.DisplayFor(model => model.RegNr)</h4>
-    <hr />
+<h2>Detaljerad information</h2>
+<div class="well">
+    <h4>Detaljerad fordonsinformation för @Html.DisplayFor(model => model.RegNr)</h4>
+
+
+
+
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.RegNr)
@@ -58,7 +62,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Tid sen parkering")
+            @Html.DisplayName("Parkering påbörjad")
         </dt>
 
         <dd>
@@ -74,7 +78,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Kostnad")
+            @Html.DisplayName("Kostnad hittils")
         </dt>
 
         <dd>
@@ -84,5 +88,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Till fordonen", "Index")
+    @Html.ActionLink("Tillbaka till listan", "Index")
 </p>
