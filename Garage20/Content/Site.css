@@ -62,3 +62,8 @@ span.glyphicon {
 
     }
 
+.btn-default {
+  color: #e86a10;
+  background-color: #ffffff;
+  border-color: #e86a10;
+}

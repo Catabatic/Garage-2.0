@@ -12,8 +12,8 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Ange fordonsinformation</h4>
-        <h4>10 min = 5 kr</h4>
+        <p>Ange fordonsinformation för att checka in.</p>
+        <p>Taxa: 5kr/10 min</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

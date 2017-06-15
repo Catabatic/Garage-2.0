@@ -35,10 +35,10 @@ namespace Garage20.Models
     }
     public enum VehicleType
     {
-        Car,
-        Motorcycle,
-        Boat,
-        Airplane,
+        Bil,
+        Motorcykel,
+        Lastbil,
+        Fyrhjuling,
     }
 
 }
