@@ -30,6 +30,7 @@ namespace Garage20.Controllers
         public ActionResult Search(string Search)
         {
             var result = db.ParkedVehicles.Where(v => v.RegNr == Search);
+            ViewBag.Searched = "eftersomboolfunkarej";
             if (!result.Any())
             {
                 ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
