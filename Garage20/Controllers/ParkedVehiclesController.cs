@@ -31,7 +31,7 @@ namespace Garage20.Controllers
             {
                 ViewBag.Description = "Could not find a vehicle with RegNr: " + Search;
             }
-            return View(result?.ToList());
+            return View("Index",result?.ToList());
         }
 
         public ActionResult Verify(string Verify)
