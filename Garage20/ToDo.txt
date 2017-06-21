@@ -1,0 +1,16 @@
+﻿Checkin page
+-add emailfield
+- connection between member and vehicle
+-fix vehicle type
+
+create member
+-confirmation/warning message
+
+sök fordon
+En översiktsvy för fordon med fälten: Ägare, fordonstyp, RegNum, ParkTid
+
+
+En detaljerad översiktsvy för fordon med alla fält kopplade till fordon (utom id )
+existing, just add link to get to this page.
+
+check that reciept function/page is working
