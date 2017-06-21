@@ -8,10 +8,15 @@ namespace Garage20.DataAccess
 {
     public class GarageContext:DbContext //Db Context permits to use the dtatbase
     {
-        public GarageContext():base("Garage2.0") //Name of the database
+        public GarageContext():base("Garage2.5") //Name of the database
         {
 
         }
+
         public DbSet<Models.ParkedVehicle> ParkedVehicles { get; set; }
+        public DbSet<Models.Members> Members { get; set; }
+        public DbSet<Models.Vehicles> Vehicles { get; set; }
+        public DbSet<Models.VehicleType> VehicleType { get; set; }
+
     }
 }

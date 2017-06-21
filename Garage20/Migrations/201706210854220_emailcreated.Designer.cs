@@ -7,13 +7,13 @@ namespace Garage20.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddVehicleType : IMigrationMetadata
+    public sealed partial class emailcreated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddVehicleType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(emailcreated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706121030541_Add VehicleType"; }
+            get { return "201706210854220_emailcreated"; }
         }
         
         string IMigrationMetadata.Source

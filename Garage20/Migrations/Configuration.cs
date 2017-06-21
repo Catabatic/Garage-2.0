@@ -1,6 +1,5 @@
 namespace Garage20.Migrations
 {
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,12 +26,6 @@ namespace Garage20.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.ParkedVehicles.AddOrUpdate(
-              v => new { v.RegNr },
-              new ParkedVehicle { RegNr = "ABC123" },
-              new ParkedVehicle { RegNr = "EFG456" },
-              new ParkedVehicle { RegNr = "QWE789" }
-            );
         }
     }
 }
