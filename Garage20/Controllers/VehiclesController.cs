@@ -40,8 +40,18 @@ namespace Garage20.Controllers
         // GET: Vehicles/Create
         public ActionResult Create()
         {
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName");
+           // ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName");
+
             ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+            if (TempData["CreatedMemberEmail"] != null)
+            {
+                ViewBag.MemberEmail = TempData["CreatedMemberEmail"].ToString();
+
+            }
+            else
+            {
+                ViewBag.MemberEmail = "j@m.se";
+            }
             return View();
         }
 
@@ -50,16 +60,53 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MemberId,VehicleTypeId,Verification,RegNr,Color,Brand,Model,WheelsAmount,CheckInTime,CheckOutTime,AmountFee")] Vehicles vehicles)
+        public ActionResult Create([Bind(Include = "MemberId,Member.Email,VehicleTypeId,RegNr,Color,Brand,Model,WheelsAmount,CheckInTime")] Vehicles vehicles)
         {
-            if (ModelState.IsValid)
+            string memberMail = ViewBag.MemberEmail;
+
+            Members currentMember = new Members();
+            currentMember = db.Members.Where(m => m.Email == memberMail).Single();
+
+            var vehicle = db.Vehicles.Where(v => v.RegNr == vehicles.RegNr);
+
+            if (ModelState.IsValid && !vehicle.Any() && currentMember != null)
             {
+                //Connect member and vehicle
+                vehicles.MemberId = currentMember.Id;
+
+                /*CheckInTime is now being defined by the user's current time when the user parks a car (Linus)*/
+                vehicles.CheckInTime = DateTime.Parse(DateTime.Now.ToString("g"));
+                
+
+                /*Verification random number generator*/
+                //var ran = new Random();
+                //while (true){
+                //        do
+                //        {
+                //            parkedVehicle.Verification += ran.Next(0, 9);
+                //        } while (parkedVehicle.Verification.Length != 4);
+                //    var vehicles = db.ParkedVehicles.Where(v => v.Verification == parkedVehicle.Verification);
+                //    if (!vehicles.Any())
+                //    {
+                //        break;
+                //    }
+                //    parkedVehicle.Verification = "";
+                //}
+                ViewBag.Description = "Fordonet har parkerats i garaget!";
                 db.Vehicles.Add(vehicles);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+                return View();
             }
+            ViewBag.Warning = "Det finns redan ett fordon med samma RegNr!";
 
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", vehicles.MemberId);
+            //if (ModelState.IsValid)
+            //{
+            //    db.Vehicles.Add(vehicles);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
             ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName", vehicles.VehicleTypeId);
             return View(vehicles);
         }
@@ -76,6 +123,7 @@ namespace Garage20.Controllers
             {
                 return HttpNotFound();
             }
+            
             ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", vehicles.MemberId);
             ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName", vehicles.VehicleTypeId);
             return View(vehicles);

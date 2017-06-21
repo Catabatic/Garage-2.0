@@ -47,15 +47,18 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PhoneNbr")] Members members)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,PhoneNbr,Email")] Members members)
         {
             var member = db.Members.Where(m => m.Email == members.Email);
             if (ModelState.IsValid && !member.Any())
             {
                 db.Members.Add(members);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["CreateMemberMessage"] = "Dina uppgifter har sparats och du kan nu checka in ett fordon.";
+                TempData["CreatedMemberEmail"] = members.Email;
+                return RedirectToAction("Create","Vehicles");
             }
+            ViewBag.Warning = "Det finns redan en medlem med samma emailadress!";
 
             return View(members);
         }
@@ -80,7 +83,7 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNbr")] Members members)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNbr, Email")] Members members)
         {
             if (ModelState.IsValid)
             {
