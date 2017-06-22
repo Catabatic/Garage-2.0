@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage20.DataAccess;
 using Garage20.Models;
+using System.Web.UI.WebControls;
 
 namespace Garage20.Controllers
 {
@@ -18,7 +19,11 @@ namespace Garage20.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+            //ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+            List<SelectListItem> items = new SelectList(db.VehicleType, "Id", "VehicleTypeName").ToList();
+            items.Insert(0, (new SelectListItem { Text = "[Alla]", Value = "0" }));
+            ViewBag.VehicleTypeId = items;
+
             var vehicles = db.Vehicles.Include(v => v.Member).Include(v => v.VehicleType);
             return View(vehicles.ToList());
         }
@@ -99,7 +104,9 @@ namespace Garage20.Controllers
 
         public ActionResult Search(string Search, int VehicleTypeId)
         {
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+           
+
+
             string regnr = Search;
             int typeId = VehicleTypeId;
             IQueryable<Vehicles> vehicle = null;
@@ -126,10 +133,17 @@ namespace Garage20.Controllers
 
             }
 
-            if (!vehicle.Any())
+            
+            List<SelectListItem> items = new SelectList(db.VehicleType, "Id", "VehicleTypeName").ToList();
+            items.Insert(0, (new SelectListItem { Text = "[Alla]", Value = "0" }));
+            ViewBag.VehicleTypeId = items;
+
+            if (vehicle == null || !vehicle.Any())
             {
+
                 ViewBag.Description = "Sökningen returnerade inga träffar";
-                return View("Index", vehicle?.ToList());
+                return View("Index", db.Vehicles.ToList());
+                //db.Vehicles.ToList()
                 //return View("Index", vehicle?.ToList());
             }
             else
@@ -170,7 +184,7 @@ namespace Garage20.Controllers
             }
             else
             {
-                ViewBag.MemberEmail = "j@m.se";
+                ViewBag.MemberEmail = "";
             }
             return View();
         }
