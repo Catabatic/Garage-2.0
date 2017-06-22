@@ -17,6 +17,7 @@ namespace Garage20.DataAccess
         public DbSet<Models.Members> Members { get; set; }
         public DbSet<Models.Vehicles> Vehicles { get; set; }
         public DbSet<Models.VehicleType> VehicleType { get; set; }
+        public DbSet<Models.VehiclesMembers> VehiclesMembers { get; set; }
 
     }
 }

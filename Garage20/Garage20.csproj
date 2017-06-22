@@ -164,10 +164,15 @@
     <Compile Include="Migrations\201706211042441_new.Designer.cs">
       <DependentUpon>201706211042441_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706221128107_vehiclesmembers.cs" />
+    <Compile Include="Migrations\201706221128107_vehiclesmembers.Designer.cs">
+      <DependentUpon>201706221128107_vehiclesmembers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Members.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Models\Vehicles.cs" />
+    <Compile Include="Models\VehiclesMembers.cs" />
     <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -265,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706211042441_new.resx">
       <DependentUpon>201706211042441_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706221128107_vehiclesmembers.resx">
+      <DependentUpon>201706221128107_vehiclesmembers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
