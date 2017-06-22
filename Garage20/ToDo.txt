@@ -6,11 +6,10 @@
 create member
 -confirmation/warning message
 
-sök fordon
-En översiktsvy för fordon med fälten: Ägare, fordonstyp, RegNum, ParkTid
+search vehicles
+-An overview view of vehicles with the fields: Owner, Vehicle Type, RegNum, ParkTime
 
-
-En detaljerad översiktsvy för fordon med alla fält kopplade till fordon (utom id )
+A detailed overview view for vehicles with all fields attached to vehicles (except id)
 existing, just add link to get to this page.
 
 check that reciept function/page is working

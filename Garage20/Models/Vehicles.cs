@@ -45,5 +45,14 @@ namespace Garage20.Models
         public virtual Members Member { get; set; }
         public virtual VehicleType VehicleType { get; set; }
 
+        public enum VehiculeTypeEnum
+        {
+            Bil,
+            Motorcykel,
+            Lastbil,
+            Fyrhjuling,
+        }
+
+
     }
 }

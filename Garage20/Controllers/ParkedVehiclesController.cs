@@ -30,6 +30,7 @@ namespace Garage20.Controllers
         /*The search method. Allows you to search for any vehicle with a RegNr*/
         public ActionResult Search(string Search)
         {
+            
             var result = db.ParkedVehicles.Where(v => v.RegNr == Search);
             ViewBag.Searched = "eftersomboolfunkarej";
             if (!result.Any())
@@ -218,5 +219,30 @@ namespace Garage20.Controllers
             }
             base.Dispose(disposing);
         }
+
+        /*The SearchVehicule method. Allows you to search any vehicles with: 
+         * Email, Vehicule TYpe, RegNr, CheckInTime*/
+        public ActionResult SearchVehicule(string Email, VehicleType VehicleType, string RegNr, DateTime? CheckInTime)
+        {
+            var result = db.ParkedVehicles.Where(v => v.RegNr == RegNr);
+            ViewBag.Searched = "eftersomboolfunkarej";
+            if (!result.Any())
+            {
+                if (RegNr != "")
+                {
+                    ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + RegNr;
+                }
+                else
+                {
+                    ViewBag.Description = "Vänligen ange ett registreringsnummer";
+                }
+                return View("Index", result?.ToList());
+            }
+
+            return View("Index", result.ToList());
+        }
+
+
+
     }
 }

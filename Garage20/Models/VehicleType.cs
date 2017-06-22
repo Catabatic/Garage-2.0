@@ -12,5 +12,7 @@ namespace Garage20.Models
         [DisplayName("Fordonstyp")]
         public string VehicleTypeName { get; set; }
 
+        
+
     }
 }

@@ -32,6 +32,6 @@ namespace Garage20.Models
 
 
         public virtual ICollection<Vehicles> Vehicles { get; set; }
-
+        
     }
 }
