@@ -1,0 +1,27 @@
+﻿@model Garage20.Models.Vehicles
+
+@{
+    ViewBag.Title = "SearchVehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checka ut fordon</h2>
+
+<div class="well">
+
+    @using (Html.BeginForm("CheckOut", "ParkedVehicles", FormMethod.Get))
+    {
+        <p>Ange registreringsnummer för fordonet du vill checka ut</p>
+            <div class="form-inline">
+                <input name="Search" class="form-control" placeholder="Registreringsnummer" type="text" />
+                <input type="submit" class="btn btn-default" value="Checka ut" />
+            </div>
+            <div class="info infoTextWarning"><p>@ViewBag.Description</p></div>
+    }
+
+
+</div>
+
+
+
+

@@ -29,12 +29,65 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicles vehicles = db.Vehicles.Find(id);
-            if (vehicles == null)
+            Vehicles vehicle = db.Vehicles.Find(id);
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(vehicles);
+
+            vehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
+            TimeSpan? ParkingDuration = vehicle.CheckOutTime - vehicle.CheckInTime;
+            vehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
+
+            return View("Details", vehicle);
+        }
+
+        public ActionResult SearchVehicle()
+        {
+            return View();
+        }
+
+        public ActionResult CheckOut(string Search)
+        {
+            var result = db.Vehicles.Where(v => v.RegNr == Search);
+            if (!result.Any())
+            {
+                if (Search != "")
+                {
+                    ViewBag.Description = "Det finns inget fordon med registreringsnummer" + Search;
+                }
+                else
+                {
+                    ViewBag.Description = "Vänligen ange ett registreringsnummer";
+                }
+
+                return View();
+            }
+
+            return Receipt(result?.First()?.Id);
+        }
+
+        public ActionResult Receipt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Vehicles vehicle = db.Vehicles.Find(id);
+            if (vehicle == null)
+            {
+                return HttpNotFound();
+            }
+
+            vehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
+            TimeSpan? ParkingDuration = vehicle.CheckOutTime - vehicle.CheckInTime;
+            vehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
+
+
+            db.Vehicles.Remove(vehicle);
+            db.SaveChanges();
+
+            return View("Receipt", vehicle);
         }
 
         // GET: Vehicles/Create
@@ -63,9 +116,7 @@ namespace Garage20.Controllers
         public ActionResult Create([Bind(Include = "MemberId,Member.Email,VehicleTypeId,RegNr,Color,Brand,Model,WheelsAmount,CheckInTime")] Vehicles vehicles, string MemberEmail)
         {
             string memberMail = MemberEmail;
-
-            Members currentMember = new Members();
-            currentMember = db.Members.Where(m => m.Email == memberMail).Single();
+            Members currentMember = db.Members?.Where(m => m.Email == memberMail).SingleOrDefault();
 
             var vehicle = db.Vehicles.Where(v => v.RegNr == vehicles.RegNr);
 
@@ -98,7 +149,15 @@ namespace Garage20.Controllers
                 ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
                 return View();
             }
-            ViewBag.Warning = "Det finns redan ett fordon med samma RegNr!";
+            else if(vehicle.Any())
+            {
+                ViewBag.Warning = "Det finns redan ett fordon med samma RegNr!";
+            }
+            else
+            {
+                ViewBag.Warning = "Denna mailadress är inte registrerat!";
+            }
+            
 
             //if (ModelState.IsValid)
             //{

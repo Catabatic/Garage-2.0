@@ -4,14 +4,10 @@
     ViewBag.Title = "Receipt";
 }
 
-<h2>Detaljerad information</h2>
-<div class="well">
-    <h4>Detaljerad fordonsinformation för @Html.DisplayFor(model => model.RegNr)</h4>
-
-
-
-
-
+<h2>Kvitto</h2>
+<div>
+    <h4>Utcheckning utförd! Kvitto för @Html.DisplayFor(model => model.Member.FirstName) @Html.DisplayFor(model => model.Member.LastName)</h4>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayName("Förnamn")
@@ -127,6 +123,3 @@
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Tillbaka till listan", "Index")
-</p>
