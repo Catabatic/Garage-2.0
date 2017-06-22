@@ -8,28 +8,36 @@
   
     <p class="lead">Välkommen till Park-a-lot, ett garage utöver det vanliga</p>
     <h1>PARK-a-LOT</h1>
+    <p></p>
+    <p><a class="btn btn-default" href="@Url.Action("Create", "ParkedVehicles")"> Bli medlem &raquo;</a></p>
 
 </div>
 <div class="container">
 
     <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+        <div class="col-xs-12 col-sm-3 col-md-3 text-center">
             <span class="glyphicon glyphicon-align-center glyphicon-map-marker"></span>
             <h2>Incheckning</h2>
             <p>Checka in ditt fordon här</p>
             <p><a class="btn btn-default" href="@Url.Action("Create", "ParkedVehicles")"> Checka in &raquo;</a></p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 text-center ">
+        <div class="col-xs-12 col-sm-3 col-md-3 text-center ">
             <span class="glyphicon glyphicon-align-center glyphicon-credit-card"></span>
             <h2>Utcheckning</h2>
             <p>Checka ut här</p>
             <p><a class="btn btn-default" href="@Url.Action("SearchVehicle", "ParkedVehicles")"> Checka ut &raquo;</a></p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 text-center ">
+        <div class="col-xs-12 col-sm-3 col-md-3 text-center ">
             <span class="glyphicon glyphicon-align-center glyphicon-search "></span>
             <h2>Sök fordon</h2>
             <p>Sök på parkerade fordon</p>
             <p><a class="btn btn-default" href="@Url.Action("Index", "ParkedVehicles")"> Sök &raquo;</a></p>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 text-center">
+            <span class="glyphicon glyphicon-align-center glyphicon-user"></span>
+            <h2>Bli medlem</h2>
+            <p>Gratis medlemskap</p>
+            <p><a class="btn btn-default" href="@Url.Action("Create", "ParkedVehicles")"> Bli medlem&raquo;</a></p>
         </div>
     </div>
     <hr />

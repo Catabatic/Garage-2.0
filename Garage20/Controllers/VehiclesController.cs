@@ -60,9 +60,9 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemberId,Member.Email,VehicleTypeId,RegNr,Color,Brand,Model,WheelsAmount,CheckInTime")] Vehicles vehicles)
+        public ActionResult Create([Bind(Include = "MemberId,Member.Email,VehicleTypeId,RegNr,Color,Brand,Model,WheelsAmount,CheckInTime")] Vehicles vehicles, string MemberEmail)
         {
-            string memberMail = ViewBag.MemberEmail;
+            string memberMail = MemberEmail;
 
             Members currentMember = new Members();
             currentMember = db.Members.Where(m => m.Email == memberMail).Single();
