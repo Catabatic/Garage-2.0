@@ -74,23 +74,87 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
+            
+
             Vehicles vehicle = db.Vehicles.Find(id);
             if (vehicle == null)
             {
                 return HttpNotFound();
             }
+            db.Vehicles.Remove(vehicle);
+            db.SaveChanges();
 
             vehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
             TimeSpan? ParkingDuration = vehicle.CheckOutTime - vehicle.CheckInTime;
             vehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
-
-
-            db.Vehicles.Remove(vehicle);
-            db.SaveChanges();
+            //vehicle.
+            VehicleType vType = db.VehicleType?.Where(vt => vt.Id == vehicle.VehicleTypeId).SingleOrDefault();
+            vehicle.VehicleType = vType;
+            Members currentMember = db.Members?.Where(m => m.Id == vehicle.MemberId).SingleOrDefault();
+            vehicle.Member = currentMember;
 
             return View("Receipt", vehicle);
         }
 
+        public ActionResult Search(string Search, int VehicleTypeId)
+        {
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
+            string regnr = Search;
+            int typeId = VehicleTypeId;
+            IQueryable<Vehicles> vehicle = null;
+
+            if (regnr != "" && typeId != 0)
+            {
+                //båda sökkriterierna
+                    vehicle =  db.Vehicles
+                   .Where(v => v.RegNr.Contains(regnr) && v.VehicleTypeId == typeId);
+            }
+            else if (regnr != "")
+            {
+                vehicle = db.Vehicles
+                  .Where(v => v.RegNr.Contains(regnr));
+            }
+            else if (typeId != 0)
+            {
+                vehicle = db.Vehicles
+                .Where(v => v.VehicleTypeId == typeId);
+            }
+            else
+            {
+                ViewBag.Description = "Vänligen ange sökkriterie";
+
+            }
+
+            if (!vehicle.Any())
+            {
+                ViewBag.Description = "Sökningen returnerade inga träffar";
+                return View("Index", vehicle?.ToList());
+                //return View("Index", vehicle?.ToList());
+            }
+            else
+            {
+               
+                return View("Index", vehicle?.ToList());
+            }
+
+
+
+            //if (regnr != "" || typeId != "")
+            //{
+
+            //    var vehicle = db.Vehicles
+            //    .Where(v => v.Email.Contains(s) || v.FirstName.Contains(s) || v.LastName.Contains(s));
+           
+            //}
+            //else
+            //{
+            //    
+            //}
+
+            //return View("Index", db.Members.ToList());
+
+        }
 
 
         // GET: Vehicles/Create

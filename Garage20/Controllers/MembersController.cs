@@ -42,20 +42,33 @@ namespace Garage20.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string Search)
         {
-            string s = "ja";
+            string s = Search;
 
-            var member = db.Members
-                    .Where(m => m.Email == s)
-                    .Where(m => m.FirstName == s)
-                    .Where(m => m.LastName == s);
+            if (s != "")
+            {
+               
+                 var member = db.Members
+                 .Where(m => m.Email.Contains(s) || m.FirstName.Contains(s) || m.LastName.Contains(s));
+                if (!member.Any())
+                {
+                    ViewBag.Description = "Sökningen returnerade inga träffar";
+                    return View("Index", member?.ToList());
+                }
+                else
+                {
+                    
+                    return View("Index", member?.ToList());
+                }
+            }
+            else
+            {
+                ViewBag.Description = "Vänligen ange sökkriterie";
+            }
 
-            return View("Index", member);
-            //var result = context.Stocks
-            //  .Where(batchNumber == null || stock.Number == batchNumber)
-            //  .Where(name == null || s => s.Name.StartsWith(name))
-            //  .ToList();
+            return View("Index", db.Members.ToList());
+
         }
 
         // POST: Members/Create
