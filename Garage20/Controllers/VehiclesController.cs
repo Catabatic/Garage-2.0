@@ -74,13 +74,9 @@ namespace Garage20.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            
 
             Vehicles vehicle = db.Vehicles.Find(id);
             Members member = vehicle.Member;
-
-            var vehicleMember = new VehiclesMembers { Vehicle = vehicle, Member = member };
 
             if (vehicle == null)
             {
@@ -98,7 +94,7 @@ namespace Garage20.Controllers
             Members currentMember = db.Members?.Where(m => m.Id == vehicle.MemberId).SingleOrDefault();
             vehicle.Member = currentMember;
 
-            return View("Receipt", vehicleMember);
+            return View("Receipt", vehicle);
         }
 
         public ActionResult Search(string Search, int VehicleTypeId)
