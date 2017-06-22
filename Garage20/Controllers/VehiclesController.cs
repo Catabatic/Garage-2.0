@@ -62,7 +62,7 @@ namespace Garage20.Controllers
                     ViewBag.Description = "Vänligen ange ett registreringsnummer";
                 }
 
-                return View();
+                return View("CheckOut");
             }
 
             return Receipt(result?.First()?.Id);
@@ -75,6 +75,10 @@ namespace Garage20.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Vehicles vehicle = db.Vehicles.Find(id);
+            Members member = vehicle.Member;
+
+            var vehicleMember = new VehiclesMembers { Vehicle = vehicle, Member = member };
+
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -87,7 +91,7 @@ namespace Garage20.Controllers
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
 
-            return View("Receipt", vehicle);
+            return View("Receipt", vehicleMember);
         }
 
 
