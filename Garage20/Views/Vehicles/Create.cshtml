@@ -11,9 +11,12 @@
 <h2>Checka in fordon</h2>
 <div class="info">
     <p class="infoText">@TempData["CreateMemberMessage"].ToString()</p>
-    <p>Ange fordonsinformation för att checka in.</p>
+    <p>Medlemskap krävs för att kunna checka in fordon. @Html.ActionLink("Bli medlem", "../Members/Create")</p>
+    <p>Ange din emailadress som identifiering.</p>
+    
     <p>Taxa: 5kr/10 min</p>
 </div>
+
 
 
 @using (Html.BeginForm()) 

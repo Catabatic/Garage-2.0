@@ -20,6 +20,7 @@ namespace Garage20.Controllers
         // GET: ParkedVehicles
         public ActionResult Index()
         {
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
             return View(db.ParkedVehicles.ToList());
         }
         public ActionResult SearchVehicle()

@@ -42,6 +42,22 @@ namespace Garage20.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            string s = "ja";
+
+            var member = db.Members
+                    .Where(m => m.Email == s)
+                    .Where(m => m.FirstName == s)
+                    .Where(m => m.LastName == s);
+
+            return View("Index", member);
+            //var result = context.Stocks
+            //  .Where(batchNumber == null || stock.Number == batchNumber)
+            //  .Where(name == null || s => s.Name.StartsWith(name))
+            //  .ToList();
+        }
+
         // POST: Members/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
