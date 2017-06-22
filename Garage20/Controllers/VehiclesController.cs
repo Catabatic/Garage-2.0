@@ -18,6 +18,7 @@ namespace Garage20.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");
             var vehicles = db.Vehicles.Include(v => v.Member).Include(v => v.VehicleType);
             return View(vehicles.ToList());
         }
@@ -88,6 +89,8 @@ namespace Garage20.Controllers
 
             return View("Receipt", vehicle);
         }
+
+
 
         // GET: Vehicles/Create
         public ActionResult Create()
