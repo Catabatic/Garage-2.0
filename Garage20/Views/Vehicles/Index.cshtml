@@ -19,6 +19,7 @@
         <div class="info infoTextWarning"><p>@ViewBag.Description</p></div>
     }
 </div>
+<p>@Html.ActionLink("Lista alla fordon", "Index")</p>
 <table class="table">
     <tr>
         <th>
@@ -53,7 +54,7 @@
         <td>
             @Html.ActionLink("Ändra", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Visa detaljer", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Checka ut", "CheckOut", new { id=item.Id })
         </td>
     </tr>
 }
