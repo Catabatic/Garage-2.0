@@ -18,8 +18,30 @@ namespace Garage20.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleType, "Id", "VehicleTypeName");//populate droplist
             var vehicles = db.Vehicles.Include(v => v.Member).Include(v => v.VehicleType);
             return View(vehicles.ToList());
+        }
+
+        public ActionResult Search(string Search)
+        {
+            
+            var result = db.Vehicles.Where(v => v.RegNr == Search);
+            ViewBag.Searched = "eftersomboolfunkarej";
+            if (!result.Any())
+            {
+                if (Search != "")
+                {
+                    ViewBag.Description = "Kunde inte hitta fordonet med RegNr: " + Search;
+                }
+                else
+                {
+                    ViewBag.Description = "Vänligen ange ett registreringsnummer";
+                }
+                return View("Index", result?.ToList());
+            }
+
+            return View("Index", result.ToList());
         }
 
         // GET: Vehicles/Details/5
@@ -133,5 +155,16 @@ namespace Garage20.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //Search Vehicule:
+        public ActionResult SearchVehicule(string RegNr, VehicleType VehicleType)
+        {
+            var result = db.Vehicles.Where(v => v.RegNr == RegNr );
+            
+
+            return View("Index", result.ToList());
+        }
+
     }
 }

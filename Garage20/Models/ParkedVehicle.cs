@@ -33,12 +33,6 @@ namespace Garage20.Models
         public int AmountFee { get; set; }
         /*Changed AmountFee to get the ParkedVehicle parking duration and the ticket cost. The ticket cost is right now 5 crowns per 10 minute. (Linus)*/
     }
-    //public enum VehicleType
-    //{
-    //    Bil,
-    //    Motorcykel,
-    //    Lastbil,
-    //    Fyrhjuling,
-    //}
+    
 
 }
