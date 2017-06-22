@@ -42,12 +42,12 @@ namespace Garage20.Controllers
             return View("Details", vehicle);
         }
 
-        public ActionResult SearchVehicle()
+        public ActionResult CheckOut()
         {
             return View();
         }
 
-        public ActionResult CheckOut(string Search)
+        public ActionResult SearchVehicle(string Search)
         {
             var result = db.Vehicles.Where(v => v.RegNr == Search);
             if (!result.Any())
@@ -82,7 +82,6 @@ namespace Garage20.Controllers
             vehicle.CheckOutTime = DateTime.Parse(DateTime.Now.ToString("g"));
             TimeSpan? ParkingDuration = vehicle.CheckOutTime - vehicle.CheckInTime;
             vehicle.AmountFee = 5 * (int)Math.Ceiling(ParkingDuration?.TotalMinutes / 10 ?? 0);
-
 
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
