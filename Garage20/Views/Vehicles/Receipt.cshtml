@@ -4,17 +4,13 @@
     ViewBag.Title = "Receipt";
 }
 
-<h2>Detaljerad information</h2>
-<div class="well">
-    <h4>Detaljerad fordonsinformation för @Html.DisplayFor(model => model.RegNr)</h4>
-
-
-
-
-
+<h2>Kvitto</h2>
+<div>
+    <h4>Utcheckning utförd! Kvitto för @Html.DisplayFor(model => model.Member.FirstName) @Html.DisplayFor(model => model.Member.LastName)</h4>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Member.FirstName)
+            @Html.DisplayName("Förnamn")
         </dt>
 
         <dd>
@@ -22,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Member.LastName)
+            @Html.DisplayName("Efternamn")
         </dt>
 
         <dd>
@@ -38,18 +34,11 @@
         </dd>
 
         <dt>
-           @Html.DisplayNameFor(model => model.Member.PhoneNbr)
+            @Html.DisplayName("Telefonnummer")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Member.PhoneNbr)
-        </dd>
-        <dt>
-            &nbsp;
-        </dt>
-
-        <dd>
-          
         </dd>
 
         <dt>
@@ -61,7 +50,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleType.VehicleTypeName)
+            @Html.DisplayName("Fordonstyp")
         </dt>
 
         <dd>
@@ -69,7 +58,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayName("färg")
         </dt>
 
         <dd>
@@ -77,7 +66,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Brand)
+            @Html.DisplayName("Märke")
         </dt>
 
         <dd>
@@ -93,23 +82,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WheelsAmount)
+            @Html.DisplayName("Antal hjul")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.WheelsAmount)
         </dd>
+
         <dt>
-            &nbsp;
+            @Html.DisplayName("Fordonstyp")
         </dt>
 
         <dd>
-
+            @Html.DisplayFor(model => model.VehicleType.VehicleTypeName)
         </dd>
 
         <dt>
-<dt>
-            @Html.DisplayNameFor(model => model.CheckInTime)
+            @Html.DisplayName("Parkering påbörjad")
         </dt>
 
         <dd>
@@ -134,6 +123,3 @@
         </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Tillbaka till listan", "Index")
-</p>

@@ -3,9 +3,15 @@
 
 @{
     ViewBag.Title = "Create";
+    if (TempData["CreateMemberMessage"] == null)
+    { TempData["CreateMemberMessage"] = ""; }
+
 }
 
 <h2>Checka in fordon</h2>
+<div class="info">
+    <p class="infoText">@TempData["CreateMemberMessage"].ToString()</p>
+</div>
 
 @using (Html.BeginForm()) 
 {
@@ -68,7 +74,7 @@
                 <input type="submit" value="Checka in" class="btn btn-default" />
                 <div class="info">
                     <p class="infoTextWarning">@ViewBag.Warning</p>
-                    <p class="infoText">@ViewBag.Description</p>
+                    <p class="infoText">@ViewBag.Description @TempData["CreateMemberMessage"].ToString()</p>
                 </div>
             </div>
             <div class="col-md-offset-2 col-md-4">

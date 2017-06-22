@@ -42,20 +42,39 @@ namespace Garage20.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            string s = "ja";
+
+            var member = db.Members
+                    .Where(m => m.Email == s)
+                    .Where(m => m.FirstName == s)
+                    .Where(m => m.LastName == s);
+
+            return View("Index", member);
+            //var result = context.Stocks
+            //  .Where(batchNumber == null || stock.Number == batchNumber)
+            //  .Where(name == null || s => s.Name.StartsWith(name))
+            //  .ToList();
+        }
+
         // POST: Members/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,PhoneNbr")] Members members)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,PhoneNbr,Email")] Members members)
         {
             var member = db.Members.Where(m => m.Email == members.Email);
             if (ModelState.IsValid && !member.Any())
             {
                 db.Members.Add(members);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["CreateMemberMessage"] = "Dina uppgifter har sparats och du kan nu checka in ett fordon.";
+                TempData["CreatedMemberEmail"] = members.Email;
+                return RedirectToAction("Create","Vehicles");
             }
+            ViewBag.Warning = "Det finns redan en medlem med samma emailadress!";
 
             return View(members);
         }
@@ -80,7 +99,7 @@ namespace Garage20.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,PhoneNbr")] Members members)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNbr, Email")] Members members)
         {
             if (ModelState.IsValid)
             {

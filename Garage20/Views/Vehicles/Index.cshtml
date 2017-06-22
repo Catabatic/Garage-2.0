@@ -4,66 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Översiktsvy över parkerade fordon</h2>
+<p>&nbsp;</p>
 <div class="well">
 
     @using (Html.BeginForm("Search", "Vehicles", FormMethod.Get))
     {
         <p>Ange registreringsnummer för att söka på ett specifikt fordon</p>
         <div class="form-inline">
-            <!--Registration Number Textfield:-->
-            <input name="Search" class="form-control" placeholder="Registreringsnummer" type="text" /><br>
-            <!--Vehicule Type Textfield:(Change to DRopdown menu)-->
-            <!--input name="Vehicule Type" class="form-control" placeholder="Vehicule Type" type="text" /--><br>
-            @using (Html.BeginForm())
-            {
-                @Html.DropDownList("VehicleTypeId", null, htmlAttributes: new { @class = "form-control" })
-            }
-            <!--Search Button:-->
+            <input name="Search" class="form-control" placeholder="Ange registreringsnummer" type="text" />
+            @Html.DropDownList("VehicleTypeId", null, htmlAttributes: new { @class = "form-control" })
             <input type="submit" class="btn btn-default" value="Sök" />
         </div>
         <div class="info infoTextWarning"><p>@ViewBag.Description</p></div>
     }
 </div>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Member.FirstName)
+            @Html.DisplayNameFor(model => model.RegNr)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VehicleType.VehicleTypeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Verification)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegNr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WheelsAmount)
+            @Html.DisplayNameFor(model => model.Member.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CheckInTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOutTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AmountFee)
         </th>
         <th></th>
     </tr>
@@ -71,41 +39,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Member.FirstName)
+            @Html.DisplayFor(modelItem => item.RegNr)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.VehicleType.VehicleTypeName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Verification)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegNr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WheelsAmount)
-        </td>
+            @Html.DisplayFor(modelItem => item.Member.Email)
+        </td>    
         <td>
             @Html.DisplayFor(modelItem => item.CheckInTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CheckOutTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AmountFee)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Ändra", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Visa detaljer", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

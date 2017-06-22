@@ -156,17 +156,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706210824145_initial.cs" />
-    <Compile Include="Migrations\201706210824145_initial.Designer.cs">
-      <DependentUpon>201706210824145_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706211034026_initial.cs" />
+    <Compile Include="Migrations\201706211034026_initial.Designer.cs">
+      <DependentUpon>201706211034026_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706210831438_new.cs" />
-    <Compile Include="Migrations\201706210831438_new.Designer.cs">
-      <DependentUpon>201706210831438_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706210854220_emailcreated.cs" />
-    <Compile Include="Migrations\201706210854220_emailcreated.Designer.cs">
-      <DependentUpon>201706210854220_emailcreated.cs</DependentUpon>
+    <Compile Include="Migrations\201706211042441_new.cs" />
+    <Compile Include="Migrations\201706211042441_new.Designer.cs">
+      <DependentUpon>201706211042441_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Members.cs" />
@@ -242,6 +238,10 @@
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Vehicles\Receipt.cshtml">
+      <BrowseToURL>~/Vehicles/Receipt</BrowseToURL>
+    </Content>
+    <Content Include="Views\Vehicles\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,14 +262,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706210824145_initial.resx">
-      <DependentUpon>201706210824145_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706211034026_initial.resx">
+      <DependentUpon>201706211034026_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706210831438_new.resx">
-      <DependentUpon>201706210831438_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706210854220_emailcreated.resx">
-      <DependentUpon>201706210854220_emailcreated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706211042441_new.resx">
+      <DependentUpon>201706211042441_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

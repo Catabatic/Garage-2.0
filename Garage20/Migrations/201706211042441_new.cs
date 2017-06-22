@@ -3,16 +3,16 @@ namespace Garage20.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class emailcreated : DbMigration
+    public partial class _new : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Members", "Email", c => c.String());
+            AlterColumn("dbo.Members", "Email", c => c.String(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Members", "Email");
+            AlterColumn("dbo.Members", "Email", c => c.String());
         }
     }
 }
